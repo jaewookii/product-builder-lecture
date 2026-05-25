@@ -21,11 +21,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
+    padding: 20px 0;
 }
 
 .container {
@@ -36,32 +37,69 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 30px var(--shadow-color);
     transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 450px;
 }
 
-h1 {
-    color: var(--text-color);
+/* ... (h1 and #theme-toggle remains same) */
+
+.contact-section {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.contact-section hr {
+    border: none;
+    border-top: 1px solid var(--shadow-color);
     margin-bottom: 30px;
 }
 
-#theme-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
+.contact-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+    border-color: #444;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--text-color);
+    color: var(--container-bg);
     border: none;
-    font-size: 1.5rem;
+    border-radius: 6px;
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: opacity 0.3s;
 }
 
-#theme-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] #theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.submit-button:hover {
+    opacity: 0.8;
 }
 
 #numbers-container {
