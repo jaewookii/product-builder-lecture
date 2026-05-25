@@ -102,6 +102,12 @@ body {
     opacity: 0.8;
 }
 
+.comments-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--shadow-color);
+}
+
 #numbers-container {
     display: flex;
     gap: 15px;
