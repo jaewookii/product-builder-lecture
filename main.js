@@ -23,10 +23,15 @@ themeToggle.addEventListener('click', () => {
 class LottoNumber extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
+    }
 
+    connectedCallback() {
         const number = this.getAttribute('number');
+        this.render(number);
+    }
 
+    render(number) {
         const style = document.createElement('style');
         style.textContent = `
             :host {
@@ -58,8 +63,9 @@ class LottoNumber extends HTMLElement {
         ball.classList.add('ball');
         ball.textContent = number;
 
-        shadow.appendChild(style);
-        shadow.appendChild(ball);
+        this.shadowRoot.innerHTML = '';
+        this.shadowRoot.appendChild(style);
+        this.shadowRoot.appendChild(ball);
     }
 }
 
