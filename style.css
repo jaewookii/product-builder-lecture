@@ -110,13 +110,42 @@ body {
 
 #numbers-container {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 14px;
     margin-bottom: 30px;
     justify-content: center;
     min-height: 70px;
 }
 
-#generate-button {
+.game-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.game-label {
+    min-width: 52px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.game-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#generate-button,
+#generate-five-button {
     background-color: var(--button-bg);
     color: white;
     border: none;
@@ -127,10 +156,12 @@ body {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-#generate-button:hover {
+#generate-button:hover,
+#generate-five-button:hover {
     background-color: var(--button-hover);
 }
 
-#generate-button:active {
+#generate-button:active,
+#generate-five-button:active {
     transform: scale(0.98);
 }

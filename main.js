@@ -71,20 +71,54 @@ class LottoNumber extends HTMLElement {
 
 customElements.define('lotto-number', LottoNumber);
 
-document.getElementById('generate-button').addEventListener('click', () => {
-    const numbersContainer = document.getElementById('numbers-container');
-    numbersContainer.innerHTML = '';
+const numbersContainer = document.getElementById('numbers-container');
+
+function generateLottoNumbers() {
     const numbers = new Set();
     while (numbers.size < 6) {
         numbers.add(Math.floor(Math.random() * 45) + 1);
     }
 
-    let delay = 0;
-    for (const number of Array.from(numbers).sort((a, b) => a - b)) {
+    return Array.from(numbers).sort((a, b) => a - b);
+}
+
+function renderGame(numbers, gameIndex = null) {
+    const gameRow = document.createElement('div');
+    gameRow.classList.add('game-row');
+
+    if (gameIndex !== null) {
+        const label = document.createElement('span');
+        label.classList.add('game-label');
+        label.textContent = `${gameIndex}게임`;
+        gameRow.appendChild(label);
+    }
+
+    const balls = document.createElement('div');
+    balls.classList.add('game-numbers');
+
+    numbers.forEach((number, index) => {
         const lottoNumber = document.createElement('lotto-number');
         lottoNumber.setAttribute('number', number);
-        lottoNumber.style.animationDelay = `${delay}s`;
-        numbersContainer.appendChild(lottoNumber);
-        delay += 0.1;
+        lottoNumber.style.animationDelay = `${index * 0.1}s`;
+        balls.appendChild(lottoNumber);
+    });
+
+    gameRow.appendChild(balls);
+    numbersContainer.appendChild(gameRow);
+}
+
+function renderGames(count) {
+    numbersContainer.innerHTML = '';
+
+    for (let i = 1; i <= count; i += 1) {
+        renderGame(generateLottoNumbers(), count > 1 ? i : null);
     }
+}
+
+document.getElementById('generate-button').addEventListener('click', () => {
+    renderGames(1);
+});
+
+document.getElementById('generate-five-button').addEventListener('click', () => {
+    renderGames(5);
 });
